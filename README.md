@@ -8,8 +8,8 @@ always follows the path the head took. As fruit is eaten, the snake gets
 longer. You lose the game if the snake eats itself, crashes into the edge of
 the arena, or eats a moldy fruit.
 
-On its own, this game is fun. However, this project adds a twist that the four
-control buttons are physically separate and controlled by four different]
+On its own, this game is fun. However, this project adds a twist: The four
+control buttons are physically separate and controlled by four different
 people, who must co-ordinate their actions to play the game.
 
 We'll host the game on a Raspberry Pi 2 running the Raspbian distribution. A
@@ -52,7 +52,7 @@ These GPIOs appear at the exact same location on all Pi models.
 For a reference to the key code names and values, see
 `include/dt-bindings/input/input.h` in the Linux kernel source tree, e.g.
 https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/input/input.h .
-Ideally, we'd imply include that file in our `.dts` file. However, we'd then
+Ideally, we'd simply include that file in our `.dts` file. However, we'd then
 require a Linux kernel source tree to compile our device tree (see below).
 
 # Software
@@ -86,11 +86,15 @@ sudo apt-get install snake4 xfonts-base device-tree-compiler evtest
 
 ## Keyboard emulation
 
-The Linux kernel contains a device driver that emulated a keyboard using GPIOs
-(input signals). We'll instantiate this using a Device Tree overlay. See the
-file `fcch-gpio-keys.dts` in this git repository for the content. To compile
-this into a binary image, run `fcch-gpio-keys-build.sh` in this git repo. To
-install this onto the Pi, copy the resultant `fcch-gpio-keys.dtb` to
+The Linux kernel contains a device driver that emulates a keyboard using GPIOs
+(input signals). We'll instantiate this using a Device Tree overlay. What is
+a Device Tree overlay? See
+https://www.raspberrypi.org/documentation/configuration/device-tree.md or
+search Google for "Device Tree overlay" to receive many answers!
+
+The file `fcch-gpio-keys.dts` in this git repository is the DT overlay source.
+To compile this into a binary image, run `fcch-gpio-keys-build.sh` in this git
+repo. To install this onto the Pi, copy the resultant `fcch-gpio-keys.dtb` to
 `/boot/overlays/`, and edit `/boot/config.txt` to add `fcch-gpio-keys` to the
 `dtoverlay` line (which you may need to add if not already present). The line
 will look like:
