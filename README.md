@@ -71,6 +71,16 @@ hdmi_group=2
 hdmi_mode=16
 ```
 
+With the HDMI to VGA converter that we're using, HDMI hotplug detection does
+not work correctly; the Pi will not detect an attached HDMI monitor and will
+fall back to composite video output instead. In order to force the Pi to use
+its HDMI output, place the following in `/boot/config.txt` (it's probably
+already present; so you can simply uncomment it):
+
+```
+hdmi_force_hotplug=1
+```
+ 
 ## Software installation
 
 Grab the Raspbian install image from
