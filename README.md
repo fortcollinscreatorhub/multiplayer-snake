@@ -55,6 +55,9 @@ https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/include/dt-
 Ideally, we'd simply include that file in our `.dts` file. However, we'd then
 require a Linux kernel source tree to compile our device tree (see below).
 
+The image file used to engrave the foot switches is `arrow.eps` in this
+repository.
+
 # Software
 
 ## Boot config for fixed display resolution
